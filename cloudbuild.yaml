@@ -1,0 +1,33 @@
+steps:
+  # 1.
+  # create the image based on the docekr file
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-t', 'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-front-1:tag1', '.']
+  
+  # 1.b
+  # push to artifact registry
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-front-1:tag1']
+  
+  # 1.alternative
+  # you can also just use one cloud build command to make the image and push it to artifact registry
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--region=us-west2', '--tag', 
+    'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-back-1:tag1', '.']
+  
+  # 2.
+  # Deploy cloud run based on the image created in the step above 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'cloudrun-cicd1-back', --allow-unauthenticated,
+     '--image', 'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-back-1:tag1',
+     '--region', 'us-central1']
+  
+  # 2.a
+  # You can also use terraform to deploy your Cloud run instance
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.0.0'
+    args: ['init']
+  
+  - id: 'tf apply'
+    name: 'hashicorp/terraform:1.0.0'
+    args: ['apply', '-auto-approve']

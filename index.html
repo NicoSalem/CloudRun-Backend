@@ -1,0 +1,24 @@
+
+<button id="btn">
+    click me
+</button>
+
+<script>
+    function request() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.response);
+                const obj = JSON.parse(xhr.response)
+                console.log(obj.key);
+            }
+        }
+        xhr.open('get', '/j', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send();
+    }
+
+    document.getElementById("btn").onclick = function() {
+    request("/", "g")
+};
+</script>
