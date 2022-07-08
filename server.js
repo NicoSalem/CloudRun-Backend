@@ -5,7 +5,7 @@ const https = require('https');
 var cors = require('cors')
 app.use(cors())
 
-var port = process.env.PORT || 8080);
+var port = process.env.PORT || 8080;
 
 app.get("/", function(req, res) {
     res.send("hello from the backend");
@@ -20,5 +20,19 @@ app.get("/j", function(req, res) {
 });
 
 app.listen(port, function() {
-    console.log("Server is listening in port" + port)
+    console.log("Server is listening in port: " + port)
 });
+
+
+const { Pool, Client } = require('pg')
+const pool = new Pool({
+  user: 'postgres',
+  host: 'groovy-autumn-290918:us-central1:cloudrun-demo-sql',
+  database: 'guestbook',
+  password: process.env.DB_PASS,
+  port: 5432,
+})
+pool.query('SELECT * FROM entries', (err, res) => {
+  console.log(err, res)
+  pool.end()
+})
