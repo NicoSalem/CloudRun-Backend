@@ -17,16 +17,6 @@ const pool = new Pool({
     
 })
 
-const query = async () => {
-    const q =  await pool.query('SELECT * from entries', (err, res) => {
-        console.log(err, res)
-        pool.end()
-      })
-}
-
-
-
-
 app.get("/", function(req, res) {
     res.send("hello from the backend1");
 });
@@ -37,7 +27,7 @@ app.get("/db", async(req, res) => {
     try {
         const allItems = await pool.query('SELECT * from entries')
         console.log('db2')
-        res.json();
+        res.json(allItems.rows);
     } 
     catch (err){
         console.log(err.message)
