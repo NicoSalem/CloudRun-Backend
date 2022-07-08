@@ -18,6 +18,6 @@ app.get("/j", function(req, res) {
     res.json({"key" : "test value"})
 });
 
-app.listen(8081, function() {
-    console.log("Server is listening in port 8081")
+app.listen(8080, function() {
+    console.log("Server is listening in port 8080")
 });
