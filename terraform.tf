@@ -3,7 +3,7 @@ provider "google" {
   project     = "groovy-autumn-290918"
 }
 
-resource "google_cloud_run_backend_service" "default" {
+resource "google_cloud_run_service" "default" {
   name     = "cloudrun-backend"
   location = "us-central1"
 
