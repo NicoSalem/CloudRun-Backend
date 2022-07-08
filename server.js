@@ -17,15 +17,31 @@ const pool = new Pool({
     
 })
 
-pool.query('SELECT* from entries', (err, res) => {
-    console.log(err, res)
-    pool.end()
-  })
+const query = async () => {
+    const q =  await pool.query('SELECT * from entries', (err, res) => {
+        console.log(err, res)
+        pool.end()
+      })
+}
+
 
 
 
 app.get("/", function(req, res) {
     res.send("hello from the backend1");
+});
+
+
+app.get("/db", async(req, res) => {
+    console.log("db1")
+    try {
+        const allItems = await pool.query('SELECT * from entries')
+        console.log('db2')
+        res.json();
+    } 
+    catch (err){
+        console.log(err.message)
+    }
 });
 
 app.get("/test", function(req, res) {
