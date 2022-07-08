@@ -24,7 +24,7 @@ app.get("/", function(req, res) {
         console.log(err, res)
         pool.end()
     })
-    res.send("hello from the backend");
+    res.send("hello from the backend1");
 });
 
 app.get("/test", function(req, res) {
@@ -32,15 +32,7 @@ app.get("/test", function(req, res) {
 });
 
 app.get("/j", function(req, res) {
-    
-    pool.query('SELECT * FROM entries', (err, res) => {
-        console.log(err, res)
-        console.log("test")
-        pool.end()
-    })
-    res.send("hello from the backend");
     res.json({"key" : "test value"})
-
 });
 
 app.listen(port, function() {
