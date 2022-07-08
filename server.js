@@ -7,6 +7,9 @@ app.use(cors())
 
 var port = process.env.PORT || 8080;
 
+console.log("this is backend")
+console.log(port)
+
 const { Pool } = require('pg')
 const pool = new Pool({
     user: 'postgres',
