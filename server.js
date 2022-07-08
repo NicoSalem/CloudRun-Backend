@@ -7,23 +7,24 @@ app.use(cors())
 
 var port = process.env.PORT || 8080;
 
-console.log("this is backend")
-console.log(port)
-
 const { Pool } = require('pg')
 const pool = new Pool({
-    user: 'postgres',
-    host: 'groovy-autumn-290918:us-central1:cloudrun-demo-sql',
-    database: 'guestbook',
-    password: process.env.DB_PASS,
+    host: '/cloudsql/groovy-autumn-290918:us-central1:cloudrun-demo-sql',
     port: 5432,
+    user: 'postgres',
+    password: '12345',
+    database: 'guestbook',
+    
 })
 
+pool.query('SELECT* from entries', (err, res) => {
+    console.log(err, res)
+    pool.end()
+  })
+
+
+
 app.get("/", function(req, res) {
-    pool.query('SELECT * FROM entries', (err, res) => {
-        console.log(err, res)
-        pool.end()
-    })
     res.send("hello from the backend1");
 });
 
@@ -31,7 +32,7 @@ app.get("/test", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/j", function(req, res) {
+app.get("/j", async function(req, res) {
     res.json({"key" : "test value"})
 });
 
