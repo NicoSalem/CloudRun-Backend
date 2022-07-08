@@ -2,6 +2,9 @@ const express = require("express")
 const app = express();
 const https = require('https');
 
+var cors = require('cors')
+app.use(cors())
+
 
 app.get("/", function(req, res) {
     res.send("hello from the backend");
@@ -12,7 +15,7 @@ app.get("/test", function(req, res) {
 });
 
 app.get("/j", function(req, res) {
-    res.json({"key" : "value"})
+    res.json({"key" : "test value"})
 });
 
 app.listen(8080, function() {
