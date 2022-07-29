@@ -15,7 +15,7 @@ app.listen(port, function() {
 
 const { Pool } = require('pg')
 const pool = new Pool({
-    host: '/cloudsql/groovy-autumn-290918:us-central1:cloudrun-demo-sql',
+    host: '/cloudsql/groovy-autumn-290918:us-central1:ford-cloudrun-demo-sql',
     port: 5432,
     user: 'postgres',
     password: process.env.DB_PASS,
