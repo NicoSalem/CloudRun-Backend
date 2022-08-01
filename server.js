@@ -13,6 +13,8 @@ app.listen(port, function() {
     console.log("Server is listening in port: " + port)
 });
 
+var msgs_list = []
+
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -58,6 +60,14 @@ app.get("/pull-pubsub-msgs", async function(req, res) {
 
 // get with push
 app.post("/get-pubsub-msgs", async function(req, res) {
-    console.log('get push ')
+    console.log('get push')
     console.log(req.body)
+    msgs_list.push(req.body)
+});
+
+app.get("/pmsgs", async function(req, res) {
+    for (const key in msgs_list) {
+        console.log(key)
+    }
+    res.send(`messages ${msgs_list}`
 });
