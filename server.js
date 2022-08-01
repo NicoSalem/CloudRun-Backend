@@ -100,8 +100,11 @@ async function synchronousPull() {
   console.log('Done.');
 }
 
+
+
 app.get("/pull-pubsub-msgs", async function(req, res) {
-    synchronousPull()
+    console.log("test")
+    await synchronousPull()
 });
 
 // get with push
