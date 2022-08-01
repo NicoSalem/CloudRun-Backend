@@ -4,7 +4,11 @@
 </button>
 
 <button id="btn2">
-    send hello via pub sub!
+    send hello via pub sub push!
+</button>
+
+<button id="btn3">
+    send hello via pub sub pull!
 </button>
 
 <script>
@@ -45,5 +49,26 @@
 
     document.getElementById("btn2").onclick = function() {
         pubsub_send()
+    };
+
+    function pubsub_send_pull() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/subs1:publish', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Authorization', 'Bearer ya29.A0AVA9y1u2llL7SjvHo3abOPJeBXf-wM0KBHo4ouB8jG_aX8zjY1M6z13rcIjVPlOGWwYGR-4KYbF8QY_Ud6tGy3esWlNoNESiIS01OADgiK0DelzQjV64-W0YTGeYQIqYEN0UPsdRSEh17kFp9TkwTw5WQj_S0dE8Ou6DYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4dEJQdWktbFNsakZXMzlMX2FIWXUzUQ0171');
+        xhr.send(JSON.stringify({
+            "messages": [
+                {
+                "attributes": {
+                    "KEY1": "VALUE1",
+                },
+                "data": btoa("hello from pubsub pull"),
+                }
+            ]
+        }));
+    }
+
+    document.getElementById("btn3").onclick = function() {
+        pubsub_send_pull()
     };
 </script>
