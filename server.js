@@ -54,7 +54,7 @@ app.get("/j", async function(req, res) {
 });
 
 
-app.get("/pmsgs", async function(req, res) {
+app.get("/pmsgs", function(req, res) {
     console.log('msgs')
     res.send(msgs_list)
     // console.log(msgs_list)
@@ -65,13 +65,18 @@ app.get("/pmsgs", async function(req, res) {
 });
 
 // retrieving pub sub messages with pull
-app.get("/pull-pubsub-msgs", async function(req, res) {
+app.get("/pull-pubsub-msgs", function(req, res) {
 
 });
 
 // get with push
-app.post("/get-pubsub-msgs", async function(req, res) {
-    console.log('get push')
-    console.log(req.body)
-    msgs_list.push(req.body)
+app.post("/get-pubsub-msgs", function(req, res) {
+    const message = Buffer.from(req.body.message.data, 'base64').toString(
+        'utf-8'
+      );
+    
+    messages.push(message);
+    
+    res.status(200).send();
+
 });
