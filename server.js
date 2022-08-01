@@ -101,7 +101,6 @@ async function publishMessage() {
 
 
 app.get("/test-pubsub", function(req, res) {
-    res.sendFile(__dirname + "/index.html");
     publishMessage()
-    
+    res.sendFile(__dirname + "/index.html");
 });
