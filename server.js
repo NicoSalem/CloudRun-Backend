@@ -50,27 +50,60 @@ app.get("/j", async function(req, res) {
     res.json({"key" : "test value"})
 });
 
-// recieveing pub sub messages
+// retrieving pub sub messages with pull
 
-app.post('/pubsub', (req, res) => {
-    if (!req.body) {
-      const msg = 'no Pub/Sub message received';
-      console.error(`error: ${msg}`);
-      res.status(400).send(`Bad Request: ${msg}`);
-      return;
-    }
-    if (!req.body.message) {
-      const msg = 'invalid Pub/Sub message format';
-      console.error(`error: ${msg}`);
-      res.status(400).send(`Bad Request: ${msg}`);
-      return;
-    }
-  
-    const pubSubMessage = req.body.message;
-    const messageData = pubSubMessage.data
-      ? Buffer.from(pubSubMessage.data, 'base64').toString().trim()
-      : 'no message';
-  
-    console.log(`${messageData}!`);
-    res.status(204).send();
-  });
+const projectId = 'groovy-autumn-290918';
+const subscriptionNameOrId = 'my-first-topic-sub';
+
+// Imports the Google Cloud client library. v1 is for the lower level
+// proto access.
+const {v1} = require('@google-cloud/pubsub');
+
+// Creates a client; cache this for further use.
+const subClient = new v1.SubscriberClient();
+
+async function synchronousPull() {
+  // The low level API client requires a name only.
+  const formattedSubscription =
+    subscriptionNameOrId.indexOf('/') >= 0
+      ? subscriptionNameOrId
+      : subClient.subscriptionPath(projectId, subscriptionNameOrId);
+
+  // The maximum number of messages returned for this request.
+  // Pub/Sub may return fewer than the number specified.
+  const request = {
+    subscription: formattedSubscription,
+    maxMessages: 10,
+  };
+
+  // The subscriber pulls a specified number of messages.
+  const [response] = await subClient.pull(request);
+
+  // Process the messages.
+  const ackIds = [];
+  for (const message of response.receivedMessages) {
+    console.log(`Received message: ${message.message.data}`);
+    ackIds.push(message.ackId);
+  }
+
+  if (ackIds.length !== 0) {
+    // Acknowledge all of the messages. You could also acknowledge
+    // these individually, but this is more efficient.
+    const ackRequest = {
+      subscription: formattedSubscription,
+      ackIds: ackIds,
+    };
+
+    await subClient.acknowledge(ackRequest);
+  }
+
+  console.log('Done.');
+}
+app.get("/pull-pubsub-msgs", async function(req, res) {
+    synchronousPull()
+});
+
+// get with push
+app.get("/get-pubsub-msgs", async function(req, res) {
+    synchronousPull()
+});
