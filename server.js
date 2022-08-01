@@ -69,5 +69,5 @@ app.get("/pmsgs", async function(req, res) {
     for (const key in msgs_list) {
         console.log(key)
     }
-    res.send(`messages ${msgs_list}`
+    res.send(`messages ${msgs_list}`)
 });
