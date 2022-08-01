@@ -56,6 +56,7 @@ app.get("/j", async function(req, res) {
 
 app.get("/pmsgs", async function(req, res) {
     console.log('msgs')
+    res.send("msgs")
     // console.log(msgs_list)
     // for (const key in msgs_list) {
     //     console.log(key)
