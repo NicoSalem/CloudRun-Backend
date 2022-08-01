@@ -109,5 +109,5 @@ app.get("/pull-pubsub-msgs", async function(req, res) {
 
 // get with push
 app.get("/get-pubsub-msgs", async function(req, res) {
-    synchronousPull()
+    console.log("test")
 });
