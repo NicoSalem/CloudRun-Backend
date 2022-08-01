@@ -56,11 +56,11 @@ app.get("/j", async function(req, res) {
 
 app.get("/pmsgs", async function(req, res) {
     console.log('msgs')
-    console.log(msgs_list)
-    for (const key in msgs_list) {
-        console.log(key)
-    }
-    // res.send(`messages ${msgs_list}`)
+    // console.log(msgs_list)
+    // for (const key in msgs_list) {
+    //     console.log(key)
+    // }
+    // // res.send(`messages ${msgs_list}`)
 });
 
 // retrieving pub sub messages with pull
