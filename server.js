@@ -70,7 +70,7 @@ app.get("/pull-pubsub-msgs", function(req, res) {
 });
 
 // get with push
-app.post("/get-pubsub-msgs", function(req, res) {
+app.post("/get-pubsub-msgs", jsonBodyParser, function(req, res) {
     const message = Buffer.from(req.body.message.data, 'base64').toString(
         'utf-8'
       );
