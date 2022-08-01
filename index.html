@@ -28,7 +28,7 @@
 
     function pubsub_send() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/ groovy-autumn-290918/topics/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
+        xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         // xhr.setRequestHeader('Authorization', 'Bearer ');
         xhr.send(JSON.stringify({
