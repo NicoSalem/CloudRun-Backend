@@ -53,7 +53,7 @@ app.get("/j", async function(req, res) {
 // retrieving pub sub messages with pull
 
 const projectId = 'groovy-autumn-290918';
-const subscriptionNameOrId = 'subs';
+const subscriptionNameOrId = 'subs1';
 
 // Imports the Google Cloud client library. v1 is for the lower level
 // proto access.
@@ -99,6 +99,7 @@ async function synchronousPull() {
 
   console.log('Done.');
 }
+
 app.get("/pull-pubsub-msgs", async function(req, res) {
     synchronousPull()
 });
