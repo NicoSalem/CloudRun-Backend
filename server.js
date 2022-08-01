@@ -66,6 +66,8 @@ app.post("/get-pubsub-msgs", async function(req, res) {
 });
 
 app.get("/pmsgs", async function(req, res) {
+    console.log('msgs')
+    console.log(msgs_list)
     for (const key in msgs_list) {
         console.log(key)
     }
