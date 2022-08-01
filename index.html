@@ -3,6 +3,11 @@
     click me!
 </button>
 
+<button id="btn-p">
+    get pub sub messages!
+</button>
+
+
 <button id="btn2">
     send hello via pub sub push!
 </button>
@@ -28,6 +33,24 @@
 
     document.getElementById("btn").onclick = function() {
         request()
+    };
+
+    function request_p() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(xhr.response);
+                const obj = JSON.parse(xhr.response)
+                console.log(obj.key);
+            }
+        }
+        xhr.open('get', '/pmsgs', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send();
+    }
+
+    document.getElementById("btn").onclick = function() {
+        request_p()
     };
 
     function pubsub_send() {
