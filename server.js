@@ -99,6 +99,7 @@ async function publishMessage() {
     }
 }
 
+publishMessage()
 
 app.get("/test-pubsub", function(req, res) {
     publishMessage()
