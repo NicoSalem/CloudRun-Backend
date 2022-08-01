@@ -75,7 +75,7 @@ app.post("/get-pubsub-msgs", function(req, res) {
         'utf-8'
       );
     
-    msgs_list.push(message);
+    msgs_list.push("message");
     
     res.status(200).send();
 
