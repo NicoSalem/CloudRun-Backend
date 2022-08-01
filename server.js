@@ -1,10 +1,11 @@
 const express = require("express")
+const bodyParser = require('body-parser');
 const app = express();
 const https = require('https');
 var useragent = require('express-useragent');
 
 var cors = require('cors')
-app.use(cors(), useragent.express())
+app.use(cors(), useragent.express(), bodyParser.urlencoded({ extended: true }))
 
 var port = process.env.PORT || 8080;
 
