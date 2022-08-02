@@ -61,7 +61,7 @@
         xhr.send(JSON.stringify({
             "messages": 
                 {
-                    "data": btoa("hello from pubsub"),
+                    "data": btoa("hello from pubsub1"),
                 }
         }));
     }
@@ -75,11 +75,11 @@
         xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization',
-         'Bearer ya29.A0AVA9y1u7eK1Bywpmkj7XdzXtRJ6S5CFmnP9e-rs_Dc6S31mP0SVlfhL35yrHvtyEzy-jaj6k-jbBv_ayOygxCY-sc7bFzxg93V55rJcYJzMAgk6w-mlgWXdiquk8Z4Xtxo9pgQIe2IMCf4YM0dI-0qEsmM5Fqjc0xFdSDB87ndn1HpNJ6581Tl4wg27JfHje_bN9ySEeHtBkT-p6zyzwmCeYwpzZailTYfBWaiYqiGxoC6vSzi1U63CSTlELhH1m8JjI2rFcdgYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4NlQySU5mdUlieTdPdTVmMlRxdlNGdw0273');
+         'Bearer ya29.A0AVA9y1uhBKwQh_I32sr1H8_oZ-bJicbzUWtKQ6T0AbsvpcQr3UO3rfw0RmHmGSfzTEtcLWX0ikxzEd-elYgDS86aY7vhV3Ur7Sl9HCGh36aas_7eI0qWpwWqqIyTXl9ZCP82Yscbsegv33wdb-fb1-NddA65FfZNVUkcTFhmlck33D07EDvC431yADJo8lsyHCmdIQp-F2QeU-jcIofyE-YgpeSAJPVYDbdHKvHML0BDx7PSA_6rpeXYkkOMUP4HI0n8H6WlngYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4d1pvOVd3eWtxOHlzNmxiZHRoQ2V2UQ0273');
         xhr.send(JSON.stringify({
             "messages": [
                 {
-                    "data": btoa("hello from pubsub"),
+                    "data": btoa("hello from pubsub2"),
                 }
             ]
         }));
