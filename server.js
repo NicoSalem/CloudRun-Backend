@@ -70,8 +70,8 @@ app.get("/pull-pubsub-msgs", function(req, res) {
 
 // get with push
 app.post("/get-pubsub-msgs", (req, res) => {
-    const message = Buffer.from(req.body.message.data, 'base64').toString('utf8');
-
+    // const message = Buffer.from(req.body.message.data, 'base64').toString('utf8');
+    var message = req.body.message.data
     msgs_list.push(message);
 
     res.status(200).send();
