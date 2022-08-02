@@ -12,7 +12,7 @@ app.listen(port, function() {
     console.log("Server is listening in port: " + port)
 });
 
-var msgs_list = []
+var msgs_list = ["test"]
 
 
 const { Pool } = require('pg')
@@ -71,7 +71,7 @@ app.get("/pull-pubsub-msgs", function(req, res) {
 // get with push
 app.post("/get-pubsub-msgs", (req, res) => {
     // const message = Buffer.from(req.body.message.data, 'base64').toString('utf8');
-    var message = req.body.message.data
+    var message = req.body.messages.data
     msgs_list.push(message);
 
     res.status(200).send();
