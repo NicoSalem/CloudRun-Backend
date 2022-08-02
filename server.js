@@ -86,6 +86,6 @@ app.post("/get-pubsub-msgs2", jsonParser, (req, res) => {
     res.send(req.body.messages.data);
 });
 
-app.post("/get-pubsub-msgs2", (req, res) => {
+app.post("/get-pubsub-msgs3", (req, res) => {
     res.send(req.body.messages.data);
 });
