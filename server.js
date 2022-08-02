@@ -73,5 +73,5 @@ app.post("/get-pubsub-msgs", (req, res) => {
 
 
 app.post("/get-pubsub-msgs2", (req, res) => {
-    res.send(req.body.messages.data);
+    res.send(req.body.messages);
 });
