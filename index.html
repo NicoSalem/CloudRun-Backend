@@ -58,15 +58,11 @@
         xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs2', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization', 'Bearer ya29.A0AVA9y1sNoejoCR9IyuKFns929IGaa-pKeIL-J_zx8ZZgTD4VdLh2QDggiiwuON5nJopLAqljrrvcShe00lK4lm-34FWy5Gxuzj3tStWKs9IknjbNGDW-sfFQKxZ42tn2wIZ3AryO8VsYGYKClJ5E5JSd-CIHyHwXBlxgnds5I_LtrCZeLga6yw1ysRP495HgMKdogR3WFZm1a8jSZmxMa283ZwILteB_KmXR6BM9TtZk0g5Ztm5gFcpthOc7cEN7LBwuiA0XRwYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4cjRMbUlIQ0wwdlZOdHcyY0ZNSGlRUQ0273');
-        xhr.send(JSON.stringify({
-            "messages": [
+        xhr.send(JSON({
+            "messages": 
                 {
-                "attributes": {
-                    "KEY1": "VALUE1",
-                },
-                "data": btoa("hello from pubsub"),
+                    "data": btoa("hello from pubsub"),
                 }
-            ]
         }));
     }
 
@@ -83,10 +79,7 @@
         xhr.send(JSON.stringify({
             "messages": [
                 {
-                "attributes": {
-                    "KEY1": "VALUE1",
-                },
-                "data": btoa("hello from pubsub pull"),
+                    "data": btoa("hello from pubsub"),
                 }
             ]
         }));
