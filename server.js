@@ -82,7 +82,10 @@ app.post("/get-pubsub-msgs", (req, res) => {
 
 });
 
-app.post("/get-pubsub-msgs2", urlencodedParser, (req, res) => {
+app.post("/get-pubsub-msgs2", jsonParser, (req, res) => {
     res.send(req.body.messages.data);
+});
 
+app.post("/get-pubsub-msgs2", (req, res) => {
+    res.send(req.body.messages.data);
 });
