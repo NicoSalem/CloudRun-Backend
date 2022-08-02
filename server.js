@@ -70,13 +70,13 @@ app.get("/pull-pubsub-msgs", function(req, res) {
 });
 
 // get with push
-app.post("/get-pubsub-msgs", jsonBodyParser, function(req, res) {
-    const message = Buffer.from(req.body.message.data, 'base64').toString(
-        'utf-8'
-      );
-    
-    msgs_list.push("message");
-    
-    res.status(200).send();
+app.post("/get-pubsub-msgs", jsonBodyParser, (req, res) => {
+        const message = Buffer.from(req.body.message.data, 'base64').toString(
+            'utf-8'
+        );
 
-});
+        msgs_list.push("message");
+
+        res.status(200).send();
+
+    });
