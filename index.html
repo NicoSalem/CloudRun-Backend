@@ -55,7 +55,7 @@
 
     function pubsub_send() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
+        xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization', 'Bearer ya29.A0AVA9y1u7rlNEWYe2UFm7-EK1cZvTKJL74qB2N9LsYPvM4p14gKhFSsjrfhdS_EopYeWuq7c9tCdv3LsQJqwr6U0K5pw5Rq3mqq5wwsDdAz5YY97_y3RkuTN315oRFoVG-Vnq_o_Mhd801cNJ5z6aK3IIHs3XxOREJlH2aXJJrOUJnY9F1Zrf3RjOBdWJk5BIPnCbwwtTk2LhLCx8gUFl5sviLtmb8kwZNkDDJHzWq0YlLcP4ia05HFE3iIbDHbZ7iLLSX3vrdAYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4TFZZNXFPYnh3cXNmYlc1NF93TGowdw0273');
         xhr.send(JSON.stringify({
