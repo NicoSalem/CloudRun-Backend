@@ -2,7 +2,7 @@ const express       = require("express")
 const app           = express();
 const https         = require('https');
 const useragent     = require('express-useragent');
-const cors          = equire('cors')
+const cors          = require('cors')
 
 app.use(cors())
 app.use(useragent.express())
