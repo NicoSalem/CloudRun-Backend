@@ -2,22 +2,19 @@ const express       = require("express")
 const app           = express();
 const https         = require('https');
 const useragent     = require('express-useragent');
-const bodyParser    = require('body-parser');
 const cors          = equire('cors')
 
 app.use(cors())
 app.use(useragent.express())
-
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 
 var port = process.env.PORT || 8080;
 
-app.listen(port, function() {
-    console.log("Server is listening in port: " + port)
-});
-
 var msgs_list = ["test"]
-
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -28,6 +25,10 @@ const pool = new Pool({
     database: 'guestbook',
     
 })
+
+app.listen(port, function() {
+    console.log("Server is listening in port: " + port)
+});
 
 app.get("/", function(req, res) {
     var browser = useragent.parse(req.headers['user-agent']);
@@ -56,16 +57,6 @@ app.get("/j", async function(req, res) {
     res.json({"key" : "test value"})
 });
 
-
-app.get("/pmsgs", function(req, res) {
-    console.log('msgs')
-    res.send(msgs_list)
-    // console.log(msgs_list)
-    // for (const key in msgs_list) {
-    //     console.log(key)
-    // }
-    // // res.send(`messages ${msgs_list}`)
-});
 
 // retrieving pub sub messages with pull
 app.get("/pull-pubsub-msgs", function(req, res) {
