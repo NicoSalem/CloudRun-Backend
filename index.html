@@ -55,7 +55,7 @@
 
     function pubsub_send() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs', true);
+        xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs2', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization', 'Bearer ya29.A0AVA9y1sNoejoCR9IyuKFns929IGaa-pKeIL-J_zx8ZZgTD4VdLh2QDggiiwuON5nJopLAqljrrvcShe00lK4lm-34FWy5Gxuzj3tStWKs9IknjbNGDW-sfFQKxZ42tn2wIZ3AryO8VsYGYKClJ5E5JSd-CIHyHwXBlxgnds5I_LtrCZeLga6yw1ysRP495HgMKdogR3WFZm1a8jSZmxMa283ZwILteB_KmXR6BM9TtZk0g5Ztm5gFcpthOc7cEN7LBwuiA0XRwYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4cjRMbUlIQ0wwdlZOdHcyY0ZNSGlRUQ0273');
         xhr.send({
@@ -80,7 +80,7 @@
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization',
          'Bearer ya29.A0AVA9y1u7eK1Bywpmkj7XdzXtRJ6S5CFmnP9e-rs_Dc6S31mP0SVlfhL35yrHvtyEzy-jaj6k-jbBv_ayOygxCY-sc7bFzxg93V55rJcYJzMAgk6w-mlgWXdiquk8Z4Xtxo9pgQIe2IMCf4YM0dI-0qEsmM5Fqjc0xFdSDB87ndn1HpNJ6581Tl4wg27JfHje_bN9ySEeHtBkT-p6zyzwmCeYwpzZailTYfBWaiYqiGxoC6vSzi1U63CSTlELhH1m8JjI2rFcdgYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4NlQySU5mdUlieTdPdTVmMlRxdlNGdw0273');
-        xhr.send({
+        xhr.send(JSON.stringify({
             "messages": [
                 {
                 "attributes": {
@@ -89,7 +89,7 @@
                 "data": btoa("hello from pubsub pull"),
                 }
             ]
-        });
+        }));
     }
 
     document.getElementById("btn3").onclick = function() {

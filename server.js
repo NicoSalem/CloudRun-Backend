@@ -48,13 +48,16 @@ app.get("/db", async(req, res) => {
 
 app.get("/test", function(req, res) {
     res.sendFile(__dirname + "/index.html");
-    
 });
 
 app.get("/j", async function(req, res) {
     res.json({"key" : "test value"})
 });
 
+
+app.get("/pmsgs", async function(req, res) {
+    res.send(msgs_list);
+});
 
 // retrieving pub sub messages with pull
 app.get("/pull-pubsub-msgs", function(req, res) {
