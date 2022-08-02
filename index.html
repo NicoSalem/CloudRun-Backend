@@ -41,7 +41,7 @@
             if (xhr.readyState === 4) {
                 console.log(xhr.response);
                 const obj = JSON.parse(xhr.response)
-                console.log(obj.key);
+                console.log(obj);
             }
         }
         xhr.open('get', '/pmsgs', true);
