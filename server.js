@@ -1,15 +1,14 @@
-const express       =   require("express")
-const app           =   express();
-const https         =   require('https');
-var useragent       =   require('express-useragent');
-const bodyParser    =   require('body-parser');
-var cors            =   require('cors')
+const express       = require("express")
+const app           = express();
+const https         = require('https');
+const useragent     = require('express-useragent');
+const bodyParser    = require('body-parser');
+const cors          = equire('cors')
 
-app.use(cors(), useragent.express())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors())
+app.use(useragent.express())
 
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 var port = process.env.PORT || 8080;
 
@@ -82,10 +81,7 @@ app.post("/get-pubsub-msgs", (req, res) => {
 
 });
 
-app.post("/get-pubsub-msgs2", jsonParser, (req, res) => {
-    res.send(req.body.messages.data);
-});
 
-app.post("/get-pubsub-msgs3", (req, res) => {
-    res.send(req.body.messages.data);
+app.post("/get-pubsub-msgs2", (req, res) => {
+    res.send(req.body);
 });
