@@ -48,4 +48,11 @@ async function synchronousPull() {
   console.log('Done.');
 }
 
-synchronousPull().catch(console.error);
+// synchronousPull().catch(console.error);
+
+function decode(s){
+  console.log(s)
+  console.log(Buffer.from(s, 'base64').toString('utf8'))
+}
+
+decode("aGVsbG8gZnJvbSBwdWJzdWI=")
