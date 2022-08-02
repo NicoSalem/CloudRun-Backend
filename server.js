@@ -1,11 +1,10 @@
 const express = require("express")
-const bodyParser = require('body-parser');
 const app = express();
 const https = require('https');
 var useragent = require('express-useragent');
 
 var cors = require('cors')
-app.use(cors(), useragent.express(), bodyParser.urlencoded({ extended: true }))
+app.use(cors(), useragent.express(), express.urlencoded({ extended: true }))
 
 var port = process.env.PORT || 8080;
 
@@ -71,12 +70,11 @@ app.get("/pull-pubsub-msgs", function(req, res) {
 
 // get with push
 app.post("/get-pubsub-msgs", jsonBodyParser, (req, res) => {
-        const message = Buffer.from(req.body.message.data, 'base64').toString(
-            'utf-8'
-        );
+    msgs_list.push("message");
+    const message = Buffer.from(req.body.message.data, 'base64').toString('utf-8');
 
-        msgs_list.push("message");
+    msgs_list.push(message);
 
-        res.status(200).send();
+    res.status(200).send();
 
-    });
+});
