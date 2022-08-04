@@ -4,11 +4,14 @@ const https         = require('https');
 const useragent     = require('express-useragent');
 const cors          = require('cors')
 
+require('dotenv').config()
+
 app.use(cors())
 app.use(useragent.express())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+console.log(process.env)
 
 var port = process.env.PORT || 8080;
 
@@ -47,11 +50,12 @@ app.get("/db", async(req, res) => {
 });
 
 app.get("/test", function(req, res) {
+    console.log(process.env.TEST)
     res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/j", async function(req, res) {
-    res.json({"key" : "test value"})
+    res.json({"key" : process.env.TEST})
 });
 
 
