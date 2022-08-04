@@ -55,7 +55,7 @@ app.get("/test", function(req, res) {
 });
 
 app.get("/j", async function(req, res) {
-    res.json({"key" : process.env.TEST})
+    res.json({"key:" : process.env.TEST})
 });
 
 
