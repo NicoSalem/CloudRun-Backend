@@ -87,11 +87,12 @@ async function synchronousPull() {
 
   // The subscriber pulls a specified number of messages.
   const [response] = await subClient.pull(request);
-
+    pull_m_list = []
   // Process the messages.
   const ackIds = [];
   for (const message of response.receivedMessages) {
     console.log(`Received message: ${message.message.data}`);
+    pull_m_list.push(`Received message from list: ${message.message.data}`)
     ackIds.push(message.ackId);
   }
 
@@ -107,17 +108,20 @@ async function synchronousPull() {
   }
 
   console.log('Done.');
+  return pull_m_list
 }
 
 // 
 
 // retrieving pub sub messages with pull
-app.get("/pull-pubsub-msgs", function(req, res) {
-    res.send(synchronousPull().catch(console.error))
+app.get("/pull-pubsub-msgs", async  function(req, res) {
+    m = await synchronousPull().catch(console.error)
+    console.log(m)
+    res.send(m)
 });
 
 // get with push
-app.post("/get-pubsub-msgs", (req, res) => {
+app.post("/get-pubsub-msgs", async (req, res) => {
     msgs_list.push(Buffer.from(req.body.messages.data, 'base64').toString('utf8'));
     res.status(200).send();
 });
