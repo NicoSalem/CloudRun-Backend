@@ -15,7 +15,7 @@ console.log(process.env)
 
 var port = process.env.PORT || 8080;
 
-var msgs_list = ["test"]
+var msgs_list = []
 
 const { Pool } = require('pg')
 const pool = new Pool({

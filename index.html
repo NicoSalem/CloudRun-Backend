@@ -75,9 +75,9 @@
         xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization',
-         'Bearer ya29.A0AVA9y1t_DeCDgbOUsulf8zDBno7gmr7KiQYKo10tNxXvuDaTBq1HkOm-fHBHRnFJnjAfiisNt_3ITOBsbf4JzSW_rcDjXNui-M1sH_GldstaEK2yPh0JaWqmbigmoM3RIi1Mp8W4sDr9l0JlQYrD8lK1Jn3eej-myCKl3Kdm93ec5bnN9v_0xSsiGlzDPm0fAdLY-VMn2mqr5btl1Hrh3UKwDYffXu91SUw51kcU77l7aHm9nr84F7hqBDLVjEu0cHutDiytHQaCgYKATASATASFQE65dr890Slj05Fe_KTArzb4yEfOQ0273');
+         'Bearer ya29.A0AVA9y1v5m8niroFUx3TjF2aC6f9TDJ8K-Hog1mkcvn22b8ywVaSYLJk1WTngDytSkIkim2M9k1sTMUlz8niU5omB5RGekg1TlCiO2sSpLYpMEw9W74KF0WsoBZHuCqrNvOgqq-qGh6vytRgbF5MZ7kkPgLtzOc9oRo1nu4KQjp0zbVxAlg2c1-ICFPxWdLP1PyiSuHE5BWM-at6G7KGGcuLJtkcS42XTtiLpZ3b4tyaFZ3zUg5nGjyA1eILFH9n95mA6rQaKBAaCgYKATASATASFQE65dr8_o_UmekWJH4Sz27dfZvGYA0273');
         xhr.send(JSON.stringify({
-            "messages": [
+            "message": [
                 {
                     "data": btoa("hello from pubsub2"),
                 }

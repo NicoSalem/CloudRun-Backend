@@ -48,7 +48,7 @@ async function synchronousPull() {
   console.log('Done.');
 }
 
-synchronousPull().catch(console.error);
+// synchronousPull().catch(console.error);
 
 // function decode(s){
 //   console.log(s)
@@ -56,3 +56,6 @@ synchronousPull().catch(console.error);
 // }
 
 // decode("aGVsbG8gZnJvbSBwdWJzdWI=")
+
+
+console.log(2)
