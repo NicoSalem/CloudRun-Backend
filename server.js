@@ -3,6 +3,7 @@ const app           = express();
 const https         = require('https');
 const useragent     = require('express-useragent');
 const cors          = require('cors')
+const redis         = require('redis')
 
 require('dotenv').config()
 
@@ -27,6 +28,14 @@ const pool = new Pool({
     
 })
 
+const redis_client = redis.createClient({
+  "host": process.env.REDIS_IP
+});
+redis_client.on("error", function(error) {
+  console.error(error);
+});
+
+
 app.listen(port, function() {
     console.log("Server is listening in port: " + port)
 });
@@ -34,6 +43,11 @@ app.listen(port, function() {
 app.get("/", function(req, res) {
     var browser = useragent.parse(req.headers['user-agent']);
     res.send(`hello from the LATEST backend, thanks for using ${browser.browser} ${browser.version} ${browser.source}`);
+});
+
+app.get("/rds", function(req, res) {
+  redis_client.set("key", "value!", redis.print);
+  res.send(`ok`);
 });
 
 
