@@ -18,7 +18,7 @@ steps:
   # 2.
   # Deploy cloud run based on the image created in the step above 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'cloudrun-cicd1-back', --allow-unauthenticated, '--no-traffic', '--tag', 'gcloud-auth',
+    args: ['run', 'deploy', 'cloudrun-cicd1-back', --allow-unauthenticated, '--no-traffic', '--tag', 'gcloud-auth2',
      '--image', 'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-back-1:tag1',
      '--add-cloudsql-instances=groovy-autumn-290918:us-central1:ford-cloudrun-demo-sql',
      '--update-secrets=DB_PASS=cloudrun-sqldb-password:latest',

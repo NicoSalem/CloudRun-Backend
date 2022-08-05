@@ -30,8 +30,8 @@ const pool = new Pool({
 })
 
 const redis_client = redis.createClient({
-  // "host": process.env.REDIS_IP
-  "port": '6380'
+  "host": process.env.REDIS_IP
+  // "port": '6380'
 });
 redis_client.on("error", function(error) {
   console.error(error);
