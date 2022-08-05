@@ -47,7 +47,11 @@ app.get("/", function(req, res) {
 
 app.get("/rds", function(req, res) {
   redis_client.set("key", "value!", redis.print);
-  res.send(`ok`);
+  var redis_reply = ''
+  redis_client.get("key", (err, reply) => {
+    redis_reply = reply
+  });
+  res.send(redis_reply);
 });
 
 

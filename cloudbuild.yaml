@@ -22,7 +22,7 @@ steps:
      '--image', 'us-central1-docker.pkg.dev/groovy-autumn-290918/app1-repo/cloudrun-back-1:tag1',
      '--add-cloudsql-instances=groovy-autumn-290918:us-central1:ford-cloudrun-demo-sql',
      '--update-secrets=DB_PASS=cloudrun-sqldb-password:latest',
-     '--vpc-connector', 'my-vpc-connector',
+    #  '--vpc-connector', 'my-vpc-connector',
      #'--update-secrets=GOOGLE_APPLICATION_CREDENTIALS=google_credentials:latest',
      '--region', 'us-east1']
   
