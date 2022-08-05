@@ -8,12 +8,12 @@
 </button>
 
 
-<button id="btn2">
+<!-- <button id="btn2">
     send hello via pub sub!
-</button>
+</button> -->
 
 <button id="btn3">
-    send hello via pub sub pull!
+    send hello via pub sub!
 </button>
 
 <script>
@@ -53,33 +53,33 @@
         request_p()
     };
 
-    function pubsub_send() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            "messages": 
-                {
-                    "data": btoa("hello from pubsub1"),
-                }
-        }));
-        console.log(xhr.response);
-    }
+    // function pubsub_send() {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs', true);
+    //     xhr.setRequestHeader('Content-Type', 'application/json');
+    //     xhr.send(JSON.stringify({
+    //         "messages": 
+    //             {
+    //                 "data": btoa("hello from pubsub1"),
+    //             }
+    //     }));
+    //     console.log(xhr.response);
+    // }
 
-    document.getElementById("btn2").onclick = function() {
-        pubsub_send()
-    };
+    // document.getElementById("btn2").onclick = function() {
+    //     pubsub_send()
+    // };
 
     function pubsub_send_pull() {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'https://pubsub.googleapis.com/v1/projects/groovy-autumn-290918/topics/my-first-topic:publish', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization',
-         'Bearer ya29.A0AVA9y1v5m8niroFUx3TjF2aC6f9TDJ8K-Hog1mkcvn22b8ywVaSYLJk1WTngDytSkIkim2M9k1sTMUlz8niU5omB5RGekg1TlCiO2sSpLYpMEw9W74KF0WsoBZHuCqrNvOgqq-qGh6vytRgbF5MZ7kkPgLtzOc9oRo1nu4KQjp0zbVxAlg2c1-ICFPxWdLP1PyiSuHE5BWM-at6G7KGGcuLJtkcS42XTtiLpZ3b4tyaFZ3zUg5nGjyA1eILFH9n95mA6rQaKBAaCgYKATASATASFQE65dr8_o_UmekWJH4Sz27dfZvGYA0273');
+         'Bearer ya29.A0AVA9y1tokyUO8ZzVB4tBsBHOAkDw76YU_xuhBOfLUKHUMcB0tcQ7k3W7IeONKxHu01sImIrjraPH0tuuCW-3qLLs-Jv9Ku8O-d1GSykUfx9JpRp8YYb9vJGpp2jjTnwjtX361EeS4qqbworwG-95z5xjqXOKd6jJ1eSAuIHlOqCbi_CbV4RsK5onfpmeDEzf0WkUJ3lJOnmH75VrLUBSEKj_Yzc9IrohHZ-cthMZ95iWuphX_nZDqA7qXm0hr_xz7IVcxhlGqgaCgYKATASATASFQE65dr8K3P85WU95cODNyIaCEJ8cw0273');
         xhr.send(JSON.stringify({
             "message": [
                 {
-                    "data": btoa("hello from pubsub2"),
+                    "data": btoa("hello to pubsub from code"),
                 }
             ]
         }));
