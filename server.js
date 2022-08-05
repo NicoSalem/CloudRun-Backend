@@ -17,6 +17,7 @@ console.log(process.env)
 var port = process.env.PORT || 8080;
 
 var msgs_list = []
+var redis_list = []
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -29,7 +30,8 @@ const pool = new Pool({
 })
 
 const redis_client = redis.createClient({
-  "host": process.env.REDIS_IP
+  // "host": process.env.REDIS_IP
+  "port": '6380'
 });
 redis_client.on("error", function(error) {
   console.error(error);
@@ -45,13 +47,12 @@ app.get("/", function(req, res) {
     res.send(`hello from the LATEST backend, thanks for using ${browser.browser} ${browser.version} ${browser.source}`);
 });
 
-app.get("/rds", function(req, res) {
-  redis_client.set("key", "value!", redis.print);
-  var redis_reply = ''
-  redis_client.get("key", (err, reply) => {
-    redis_reply = reply
+app.get("/rds", async function(req, res) {
+  redis_client.set("first_key", "redis is working")
+  await redis_client.get("first_key", (error, first_key)  => {
+    redis_list.push(first_key);
   });
-  res.send(redis_reply);
+  res.json(redis_list)
 });
 
 
