@@ -133,6 +133,6 @@ app.post("/get-pubsub-msgs", async (req, res) => {
 
 
 app.post("/get-pubsub-msgs2", (req, res) => {
-  console.log(req.body.messages.data)
-  res.send(req.body.messages.data);
+  console.log(req.body.messages)
+  res.send(req.body.messages);
 });
