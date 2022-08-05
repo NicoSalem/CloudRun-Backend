@@ -23,7 +23,7 @@ steps:
      '--add-cloudsql-instances=groovy-autumn-290918:us-central1:ford-cloudrun-demo-sql',
      '--update-secrets=DB_PASS=cloudrun-sqldb-password:latest',
      #'--update-secrets=GOOGLE_APPLICATION_CREDENTIALS=google_credentials:latest',
-     '--region', 'us-east1']
+     '--region', 'us-central1']
   
   # 2.a
   # You can also use terraform to deploy your Cloud run instance
