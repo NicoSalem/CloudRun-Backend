@@ -9,7 +9,7 @@
 
 
 <button id="btn2">
-    send hello via pub sub push!
+    send hello via pub sub!
 </button>
 
 <button id="btn3">
@@ -57,7 +57,6 @@
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'https://cloudrun-cicd1-back-svuotfutja-uc.a.run.app/get-pubsub-msgs', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('Authorization', 'Bearer ya29.A0AVA9y1t_DeCDgbOUsulf8zDBno7gmr7KiQYKo10tNxXvuDaTBq1HkOm-fHBHRnFJnjAfiisNt_3ITOBsbf4JzSW_rcDjXNui-M1sH_GldstaEK2yPh0JaWqmbigmoM3RIi1Mp8W4sDr9l0JlQYrD8lK1Jn3eej-myCKl3Kdm93ec5bnN9v_0xSsiGlzDPm0fAdLY-VMn2mqr5btl1Hrh3UKwDYffXu91SUw51kcU77l7aHm9nr84F7hqBDLVjEu0cHutDiytHQaCgYKATASATASFQE65dr890Slj05Fe_KTArzb4yEfOQ0273');
         xhr.send(JSON.stringify({
             "messages": 
                 {
