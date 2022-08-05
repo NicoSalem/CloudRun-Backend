@@ -33,7 +33,7 @@ app.listen(port, function() {
 
 app.get("/", function(req, res) {
     var browser = useragent.parse(req.headers['user-agent']);
-    res.send(`hello from the NEW backend, thanks for using ${browser.browser} ${browser.version} ${browser.source}`);
+    res.send(`hello from the LATEST backend, thanks for using ${browser.browser} ${browser.version} ${browser.source}`);
 });
 
 
