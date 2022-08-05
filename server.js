@@ -11,7 +11,7 @@ app.use(useragent.express())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-console.log(process.env)
+// console.log(process.env)
 
 var port = process.env.PORT || 8080;
 
