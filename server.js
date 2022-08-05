@@ -127,8 +127,7 @@ app.get("/pull-pubsub-msgs", async  function(req, res) {
 // get with push
 app.post("/get-pubsub-msgs", async (req, res) => {
   console.log(req.body)
-  msgs_list.push(req.body.messages)
-    // msgs_list.push(Buffer.from(req.body.messages.data, 'base64').toString('utf8'));
+  msgs_list.push(Buffer.from(req.body.message.data, 'base64').toString('utf8'));
   res.status(200).send();
 });
 
