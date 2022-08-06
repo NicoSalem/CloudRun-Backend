@@ -49,11 +49,14 @@ app.get("/", function(req, res) {
 
 app.get("/rds", async function(req, res) {
   redis_client.set("first_key", "redis is working")
-  redis_client.get("first_key", (error, first_key)  => {
+  await redis_client.get("first_key", (error, first_key)  => {
     redis_list.push(first_key);
+    res.json(redis_list)
   });
-  res.json(redis_list)
 });
+
+
+
 
 app.get("/redis-data", async function(req, res) {
   redis_client.get("redis-pubsub-messages", (error, redis_pubsub_messages)  => {
@@ -140,8 +143,6 @@ async function synchronousPull() {
   return pull_m_list
 }
 
-// 
-
 // retrieving pub sub messages with pull
 app.get("/pull-pubsub-msgs", async  function(req, res) {
     m = await synchronousPull().catch(console.error)
@@ -154,12 +155,27 @@ app.post("/get-pubsub-msgs", async (req, res) => {
   console.log(req.body)
   pubsub_data = Buffer.from(req.body.message.data, 'base64').toString('utf8')
   msgs_list.push(pubsub_data);
-  redis_client.rpush("redis-pubsub-messages", pubsub_data);
+  appendToRedis("redis-pubsub-messages", pubsub_data)
   res.status(200).send();
 });
-
 
 app.post("/get-pubsub-msgs2", (req, res) => {
   console.log(req.body.messages)
   res.send(req.body.messages);
+});
+
+async function appendToRedis(redis_variable, append_value){
+  await redis_client.get(redis_variable, (error, reply1)  => {
+    var current = reply1;
+    var new_value = current + append_value;
+    redis_client.set(redis_variable, new_value)
+  });
+}
+
+redis_client.set("psub_messages", "")
+app.get("/rds-test", async function(req, res) {
+  appendToRedis('psub_messages', ' added');
+  redis_client.get('psub_messages', (error, reply2)  => {
+    res.send(reply2)
+  });
 });
