@@ -25,7 +25,7 @@ const pool = new Pool({
     port: 5432,
     user: 'postgres',
     password: process.env.DB_PASS,
-    database: 'guestbook',
+    database: 'guestbook'
     
 })
 
@@ -49,12 +49,17 @@ app.get("/", function(req, res) {
 
 app.get("/rds", async function(req, res) {
   redis_client.set("first_key", "redis is working")
-  await redis_client.get("first_key", (error, first_key)  => {
+  redis_client.get("first_key", (error, first_key)  => {
     redis_list.push(first_key);
   });
   res.json(redis_list)
 });
 
+app.get("/redis-data", async function(req, res) {
+  redis_client.get("redis-pubsub-messages", (error, redis_pubsub_messages)  => {
+    res.send(redis_pubsub_messages);
+  });
+});
 
 app.get("/db", async(req, res) => {
     console.log("db1")
@@ -81,6 +86,7 @@ app.get("/j", async function(req, res) {
 app.get("/pmsgs", async function(req, res) {
     res.send(msgs_list);
 });
+
 
 // retrieving pub sub messages with pull
 
@@ -146,7 +152,9 @@ app.get("/pull-pubsub-msgs", async  function(req, res) {
 // get with push
 app.post("/get-pubsub-msgs", async (req, res) => {
   console.log(req.body)
-  msgs_list.push(Buffer.from(req.body.message.data, 'base64').toString('utf8'));
+  pubsub_data = Buffer.from(req.body.message.data, 'base64').toString('utf8')
+  msgs_list.push(pubsub_data);
+  redis_client.rpush("redis-pubsub-messages", pubsub_data);
   res.status(200).send();
 });
 
