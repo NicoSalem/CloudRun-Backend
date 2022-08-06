@@ -56,11 +56,9 @@ app.get("/rds", async function(req, res) {
 });
 
 
-
-
 app.get("/redis-data", async function(req, res) {
   redis_client.get("redis-pubsub-messages", (error, redis_pubsub_messages)  => {
-    res.send(redis_pubsub_messages);
+    res.json(redis_pubsub_messages);
   });
 });
 
